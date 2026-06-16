@@ -18,6 +18,8 @@ Thumbs.db
 *.log
 logs/
 storage/logs/
+!storage/logs/
+!storage/logs/.gitignore
 .cache/
 .tmp/
 tmp/
@@ -34,6 +36,7 @@ tmp/
 !/storage/framework/cache/.gitignore
 !/storage/framework/sessions/.gitignore
 !/storage/framework/views/.gitignore
+!/storage/framework/testing/.gitignore
 
 # Testing / coverage
 coverage/
