@@ -1,0 +1,18 @@
+<?php
+
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(RefreshDatabase::class);
+
+it('returns 403 when authenticated user lacks required permission', function (): void {
+    $user = User::factory()->create();
+
+    $this->actingAs($user, 'sanctum')
+        ->getJson('/api/v1/admin/ping')
+        ->assertStatus(403)
+        ->assertJson([
+            'success' => false,
+            'message' => 'Forbidden',
+        ]);
+});
