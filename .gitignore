@@ -1,0 +1,65 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+
+# Logs / caches
+*.log
+logs/
+storage/logs/
+.cache/
+.tmp/
+tmp/
+
+# PHP / Laravel
+/vendor/
+/node_modules/
+/public/build/
+/public/hot
+/storage/*.key
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+!/storage/framework/cache/.gitignore
+!/storage/framework/sessions/.gitignore
+!/storage/framework/views/.gitignore
+
+# Testing / coverage
+coverage/
+.phpunit.cache/
+.pest/
+
+# Frontend
+dist/
+build/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python AI services
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Generated artifacts
+*.zip
+*.tar
+*.gz
+*.sql
+*.sqlite
+*.sqlite3
