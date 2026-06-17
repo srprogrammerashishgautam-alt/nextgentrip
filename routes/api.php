@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\Auth\AuthController;
 use App\Support\ApiResponse;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\HotelController;
 
 Route::prefix('v1')->name('api.v1.')->group(function (): void {
     Route::prefix('auth')->name('auth.')->group(function (): void {
@@ -18,4 +19,10 @@ Route::prefix('v1')->name('api.v1.')->group(function (): void {
     Route::middleware(['auth:sanctum', 'permission:admin.view'])
         ->get('admin/ping', fn () => ApiResponse::success(['pong' => true], 'Admin access granted'))
         ->name('admin.ping');
+
+    Route::apiResource(
+        'hotels',
+        HotelController::class
+    );
+
 });
