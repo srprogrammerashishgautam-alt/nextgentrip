@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\V1\AcquisitionController;
 use App\Http\Controllers\Api\V1\Auth\AuthController;
+use App\Http\Controllers\Api\V1\HotelController;
 use App\Support\ApiResponse;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\V1\HotelController;
 
 Route::prefix('v1')->name('api.v1.')->group(function (): void {
     Route::prefix('auth')->name('auth.')->group(function (): void {
@@ -25,4 +26,12 @@ Route::prefix('v1')->name('api.v1.')->group(function (): void {
         HotelController::class
     );
 
+    Route::prefix('acquisition')->name('acquisition.')->group(function (): void {
+        Route::post('discover', [AcquisitionController::class, 'discover'])->name('discover');
+        Route::post('import', [AcquisitionController::class, 'import'])->name('import');
+        Route::get('leads', [AcquisitionController::class, 'leads'])->name('leads.index');
+        Route::get('leads/{lead}', [AcquisitionController::class, 'show'])->name('leads.show');
+        Route::post('leads/{lead}/score', [AcquisitionController::class, 'score'])->name('leads.score');
+        Route::post('leads/{lead}/invite', [AcquisitionController::class, 'invite'])->name('leads.invite');
+    });
 });

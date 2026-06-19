@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Contracts\AI\AiGatewayInterface;
+use App\Contracts\Acquisition\HotelDataProviderInterface;
 use App\Contracts\Auth\MagicLinkServiceInterface;
 use App\Contracts\Auth\OtpServiceInterface;
 use App\Contracts\Events\EventBusInterface;
 use App\Services\AI\MockAiGateway;
+use App\Services\Acquisition\MockHotelDataProvider;
 use App\Services\Auth\MockMagicLinkService;
 use App\Services\Auth\MockOtpService;
 use App\Services\Events\MockKafkaEventBus;
@@ -20,5 +22,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(OtpServiceInterface::class, MockOtpService::class);
         $this->app->bind(AiGatewayInterface::class, MockAiGateway::class);
         $this->app->bind(EventBusInterface::class, MockKafkaEventBus::class);
+        $this->app->bind(HotelDataProviderInterface::class, MockHotelDataProvider::class);
     }
 }
