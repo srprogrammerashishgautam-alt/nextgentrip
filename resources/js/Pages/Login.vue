@@ -1,30 +1,65 @@
+<script setup>
+import { Link, useForm } from '@inertiajs/vue3'
+
+const props = defineProps({
+    status: String,
+})
+
+const form = useForm({
+    email: '',
+    password: '',
+    remember: false,
+})
+
+const submit = () => {
+    form.post('/login', {
+        preserveScroll: true,
+    })
+}
+</script>
+
 <template>
+    <main class="auth-shell">
+        <section class="auth-panel">
+            <div class="brand-mark">N</div>
+            <p class="eyebrow">Partner access</p>
+            <h1>Sign in to NextGenTrip</h1>
+            <p class="muted">Manage onboarding, rates, inventory, bookings, and channel sync from one workspace.</p>
 
-<div class="container mt-5">
+            <div v-if="props.status" class="alert alert-success">
+                {{ props.status }}
+            </div>
 
-    <h2>Login</h2>
+            <form class="form-stack" @submit.prevent="submit">
+                <label>
+                    Email
+                    <input v-model="form.email" type="email" autocomplete="email" placeholder="owner@example.com" required>
+                    <span v-if="form.errors.email" class="field-error">{{ form.errors.email }}</span>
+                </label>
 
-    <form>
+                <label>
+                    Password
+                    <input v-model="form.password" type="password" autocomplete="current-password" placeholder="Enter password" required>
+                    <span v-if="form.errors.password" class="field-error">{{ form.errors.password }}</span>
+                </label>
 
-        <input
-            class="form-control mb-3"
-            placeholder="Email"
-        >
+                <div class="form-row">
+                    <label class="check-label">
+                        <input v-model="form.remember" type="checkbox">
+                        Remember me
+                    </label>
+                    <Link href="/forgot-password">Forgot password?</Link>
+                </div>
 
-        <input
-            type="password"
-            class="form-control mb-3"
-            placeholder="Password"
-        >
+                <button class="primary-btn" type="submit" :disabled="form.processing">
+                    {{ form.processing ? 'Signing in...' : 'Login' }}
+                </button>
+            </form>
 
-        <button
-            class="btn btn-primary"
-        >
-            Login
-        </button>
-
-    </form>
-
-</div>
-
+            <p class="auth-switch">
+                New hotel partner?
+                <Link href="/register">Create an account</Link>
+            </p>
+        </section>
+    </main>
 </template>
