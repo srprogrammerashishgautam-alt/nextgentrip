@@ -2,8 +2,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build"
+    "dev": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/vite-dev.ps1",
+    "build": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/vite-build.ps1"
   },
   "dependencies": {
     "@inertiajs/vue3": "^3.4.0",

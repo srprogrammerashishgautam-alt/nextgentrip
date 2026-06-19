@@ -1,7 +1,12 @@
 <script setup>
 import { Link, useForm } from '@inertiajs/vue3'
 
+const props = defineProps({
+    csrf_token: String,
+})
+
 const form = useForm({
+    _token: props.csrf_token,
     name: '',
     email: '',
     mobile: '',

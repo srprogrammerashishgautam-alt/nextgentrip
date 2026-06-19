@@ -24,7 +24,7 @@ const logout = () => {
             <Link class="brand" href="/">NextGenTrip</Link>
             <nav>
                 <a class="active" href="#">Overview</a>
-                <a href="#">Hotels</a>
+                <Link href="/hotels">Hotels</Link>
                 <a href="#">Onboarding</a>
                 <a href="#">Inventory</a>
                 <a href="#">Channels</a>

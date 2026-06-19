@@ -9,6 +9,8 @@ class Inventory extends BaseModel
 {
     use HasFactory;
 
+    protected $table = 'inventory';
+
     protected $fillable = [
         'hotel_id',
         'room_type_id',

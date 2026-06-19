@@ -42,6 +42,7 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'status' => fn () => $request->session()->get('status'),
             ],
+            'csrf_token' => fn () => csrf_token(),
         ]);
     }
 }

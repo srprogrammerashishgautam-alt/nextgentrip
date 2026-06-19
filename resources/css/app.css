@@ -18,7 +18,9 @@
 body {
     margin: 0;
     min-height: 100vh;
-    background: var(--bg);
+    background:
+        linear-gradient(180deg, rgba(232, 244, 242, 0.72), rgba(244, 247, 251, 0.2) 360px),
+        var(--bg);
     color: var(--ink);
 }
 
@@ -33,7 +35,8 @@ a:hover {
 
 button,
 input,
-select {
+select,
+textarea {
     font: inherit;
 }
 
@@ -49,6 +52,7 @@ select {
     padding: 22px clamp(20px, 5vw, 64px);
     background: #ffffff;
     border-bottom: 1px solid var(--line);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
 }
 
 .brand {
@@ -84,12 +88,15 @@ select {
     background: var(--accent);
     color: #ffffff;
     width: 100%;
+    box-shadow: 0 10px 22px rgba(15, 118, 110, 0.18);
+    transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 
 .primary-btn:hover {
     background: var(--accent-dark);
     color: #ffffff;
     text-decoration: none;
+    transform: translateY(-1px);
 }
 
 .primary-btn:disabled {
@@ -101,6 +108,14 @@ select {
     background: #ffffff;
     color: var(--ink);
     border-color: var(--line);
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.secondary-btn:hover {
+    border-color: #b8c5d6;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+    text-decoration: none;
+    transform: translateY(-1px);
 }
 
 .nav-button {
@@ -154,6 +169,19 @@ select {
     border: 1px solid var(--line);
     border-radius: 8px;
     box-shadow: 0 16px 50px rgba(15, 23, 42, 0.06);
+}
+
+.panel,
+.metric-card,
+.stat-card {
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.metric-card:hover,
+.stat-card:hover {
+    border-color: #c6d3e1;
+    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.09);
+    transform: translateY(-2px);
 }
 
 .hero-board {
@@ -257,20 +285,123 @@ label {
 }
 
 input,
-select {
+select,
+textarea {
     width: 100%;
     min-height: 44px;
     border: 1px solid var(--line);
     border-radius: 6px;
     color: var(--ink);
     padding: 0 12px;
+    background: #ffffff;
+}
+
+textarea {
+    min-height: 96px;
+    padding: 12px;
+    resize: vertical;
 }
 
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
     outline: none;
+}
+
+.action-fit {
+    width: auto;
+}
+
+.table-panel {
+    margin-top: 16px;
+    overflow-x: auto;
+}
+
+.table-toolbar {
+    margin-bottom: 16px;
+    max-width: 360px;
+}
+
+.data-table {
+    display: grid;
+    min-width: 760px;
+}
+
+.table-row {
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    gap: 16px;
+    grid-template-columns: minmax(220px, 1.5fr) minmax(120px, 0.8fr) 110px 80px 170px;
+    padding: 14px 0;
+}
+
+.table-row:not(.table-head):hover {
+    background: #f8fafc;
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.table-row:last-child {
+    border-bottom: 0;
+}
+
+.table-head {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.table-row small {
+    color: var(--muted);
+    display: block;
+    margin-top: 4px;
+}
+
+.row-actions {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+.row-actions button {
+    background: transparent;
+    border: 0;
+    color: #b91c1c;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0;
+}
+
+.status-pill {
+    background: var(--soft);
+    border-radius: 999px;
+    color: var(--accent-dark);
+    display: inline-flex;
+    font-style: normal;
+    font-weight: 800;
+    padding: 5px 10px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.detail-grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 140px minmax(0, 1fr);
+    margin-top: 18px;
+}
+
+.detail-grid span {
+    color: var(--muted);
 }
 
 .check-label {
@@ -313,9 +444,10 @@ select:focus {
 }
 
 .sidebar {
-    background: #0f172a;
+    background: linear-gradient(180deg, #0f172a, #132f3a);
     color: #ffffff;
     padding: 26px 20px;
+    box-shadow: 12px 0 40px rgba(15, 23, 42, 0.08);
 }
 
 .sidebar .brand {
@@ -342,7 +474,7 @@ select:focus {
 }
 
 .dashboard-main {
-    padding: 28px;
+    padding: clamp(20px, 3vw, 34px);
 }
 
 .dashboard-header {
@@ -405,6 +537,10 @@ select:focus {
     .top-nav {
         align-items: flex-start;
         flex-direction: column;
+    }
+
+    .table-row {
+        grid-template-columns: minmax(180px, 1.2fr) 100px 100px 70px 150px;
     }
 
     .span-2 {

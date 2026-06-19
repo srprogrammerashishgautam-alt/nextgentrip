@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Booking;
+use App\Models\Hotel;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -13,10 +15,10 @@ class DashboardController extends Controller
         return Inertia::render('Dashboard', [
             'user' => $request->user()?->only(['id', 'name', 'email', 'mobile']),
             'metrics' => [
-                'hotels' => 0,
+                'hotels' => Hotel::count(),
                 'onboarding' => 0,
-                'bookings' => 0,
-                'revenue' => 0,
+                'bookings' => Booking::count(),
+                'revenue' => (float) Booking::sum('total_amount'),
             ],
             'tasks' => [
                 ['label' => 'Complete property profile', 'status' => 'Pending'],
